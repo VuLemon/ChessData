@@ -1,0 +1,19 @@
+{
+  "name": "chessdata",
+  "version": "1.0.0",
+  "description": "Chess Opening Explorers to improve your opening game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node frontend/chessLogic.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "chess.js": "^1.0.0-beta.8",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "path": "^0.12.7"
+  }
+}
