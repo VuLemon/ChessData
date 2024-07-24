@@ -1,10 +1,10 @@
-import React, { useRef, useEffect } from 'react';
-import axios from 'axios'
+import React, { useState, useRef, useEffect } from 'react';
 import $ from 'jquery';
 
-const ChessboardComponent = () => {
+const ChessboardComponent = ({queryForFen}) => {
     const gameRef = useRef(null);
     const boardRef = useRef(null);
+    const [opening, setOpeningName] = useState('Starting Position')
 
   useEffect(() => {
     // Ensure Chessboard and Chess are loaded globally
@@ -38,7 +38,7 @@ const ChessboardComponent = () => {
         }
       }, 100);
     }
-  });
+  }, []);
 
   const highlightedWhite = '#a9a9a9';
   const highlightedBlack = '#696969';
@@ -84,26 +84,20 @@ const ChessboardComponent = () => {
 
     if (move === null) return 'snapback';
     revertHighlighted();
-    queryForFen(game.fen())
+    queryForFen(game.fen(), setOpeningName)
   };
-
   const onSnapEnd = () => {
     const game = gameRef.current
     const board = boardRef.current
     board.position(game.fen())
   };
 
-  const queryForFen = async (fen) => {
-    try {
-      await axios.get(`http://localhost:4000/openings?fen=${fen}&moves=12`)
-    } catch (error) {
-      console.log("Error from the frontend: " + error)
-    }
-  }
+  
 
   return (
     <div>
       <div id="myBoard" style={{ width: '400px' }}></div>
+      {opening && <div>Opening: {opening}</div>}
     </div>
   );
 };
