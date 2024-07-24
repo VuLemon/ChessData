@@ -1,4 +1,5 @@
 import React, { useRef, useEffect } from 'react';
+import axios from 'axios'
 import $ from 'jquery';
 
 const ChessboardComponent = () => {
@@ -83,6 +84,7 @@ const ChessboardComponent = () => {
 
     if (move === null) return 'snapback';
     revertHighlighted();
+    queryForFen(game.fen())
   };
 
   const onSnapEnd = () => {
@@ -90,6 +92,14 @@ const ChessboardComponent = () => {
     const board = boardRef.current
     board.position(game.fen())
   };
+
+  const queryForFen = async (fen) => {
+    try {
+      await axios.get(`http://localhost:4000/openings?fen=${fen}&moves=12`)
+    } catch (error) {
+      console.log("Error from the frontend: " + error)
+    }
+  }
 
   return (
     <div>
