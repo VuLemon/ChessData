@@ -10,7 +10,6 @@ const ChessboardComponent = ({queryForFen}) => {
     // Ensure Chessboard and Chess are loaded globally
     const initializeGame = () => {
         gameRef.current = new window.Chess();
-        console.log("game created:", gameRef.current);
       };
 
     const initializeBoard = () => {
@@ -23,12 +22,12 @@ const ChessboardComponent = ({queryForFen}) => {
         onSnapEnd: onSnapEnd
       };
       boardRef.current = window.Chessboard('myBoard', config);
-      console.log("board created:", boardRef.current);
     };
 
     if (window.Chess && window.Chessboard) {
       initializeGame();
       initializeBoard();
+      
     } else {
       const interval = setInterval(() => {
         if (window.Chess && window.Chessboard) {
@@ -45,7 +44,6 @@ const ChessboardComponent = ({queryForFen}) => {
 
   const highlighted = (square) => {
     const $square = $(`#myBoard .square-${square}`);
-    console.log(`#myBoard .square-${square}`);
     let background = highlightedWhite;
     if ($square.hasClass('black-3c85d')) {
       background = highlightedBlack;
@@ -55,7 +53,6 @@ const ChessboardComponent = ({queryForFen}) => {
 
   const revertHighlighted = () => {
     $('#myBoard .square-55d63').css('background', '');
-    console.log('revertHighlighted fired');
   };
 
   const onDragStart = (source, piece) => {
