@@ -36,3 +36,34 @@
     transform: rotate(360deg);
   }
 }
+
+.container {
+  display: flex;
+  justify-content: center; /* Center the contents horizontally */
+  align-items: flex-start;
+  width: 80%; /* Adjust the width to add margin on the sides */
+  padding: 20px;
+  margin: 0 auto; /* Center the container */
+  margin-top: 40px; /* Add top margin */
+}
+
+.chessboard-container, .eval-container {
+  flex: 1;
+  margin: 10px;
+}
+
+/* Optional: Adjust these styles to better fit your design */
+.chessboard-container {
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  justify-content: center;
+  align-items: center;
+  margin-left: 50px; /* Increase left margin to move further from the edge */
+}
+
+.eval-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 20px; /* Optionally, adjust the margin for the eval container as well */
+}

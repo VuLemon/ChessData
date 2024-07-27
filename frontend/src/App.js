@@ -6,6 +6,7 @@ import EvalComponent from './components/evalComponent';
 
 function App() {
   const [game, setGame] = useState(null)
+  const [moveMade, setMoveMade] = useState(false);
 
   const queryForFen = async (fen, setOpeningName) => {
     try {
@@ -16,6 +17,7 @@ function App() {
         setOpeningName(openingName)
       }
       setGame(gameState)
+      setMoveMade(true)
       console.log("Opening is " + JSON.stringify(game.data.moves))
     } catch (error) {
       console.log("Error from the frontend: " + error)
@@ -26,10 +28,9 @@ function App() {
     <div className="App">
       <header className="App-header">
         <h1>Chess Game</h1>
-        <ChessboardComponent queryForFen={queryForFen}/>
-        {game && game.data.moves && 
-        (<EvalComponent moves={game.data.moves} />)
-        }
+        <div className="container">
+          <ChessboardComponent queryForFen={queryForFen}/>
+          <EvalComponent moves={game ? game.data.moves : []} moveMade={moveMade} /></div>
       </header>
     </div>
   );

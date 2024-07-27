@@ -27,7 +27,7 @@ const ChessboardComponent = ({queryForFen}) => {
     if (window.Chess && window.Chessboard) {
       initializeGame();
       initializeBoard();
-      
+
     } else {
       const interval = setInterval(() => {
         if (window.Chess && window.Chessboard) {
@@ -92,7 +92,7 @@ const ChessboardComponent = ({queryForFen}) => {
   
 
   return (
-    <div>
+    <div className="chessboard-container">
       <div id="myBoard" style={{ width: '400px' }}></div>
       {opening && <div>Opening: {opening}</div>}
     </div>

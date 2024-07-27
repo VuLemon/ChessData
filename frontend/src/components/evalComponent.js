@@ -1,6 +1,22 @@
 import React from 'react';
 
-const evalComponent = ({ moves }) => {
+const evalComponent = ({ moves, moveMade }) => {
+
+    if (!moveMade) {
+        return (
+          <div className="eval-container">
+            <p>Make a move to see the evaluation</p>
+          </div>
+        );
+      }
+    
+      if (!moves || moves.length === 0) {
+        return (
+          <div className="eval-container">
+            <p>No move found</p>
+          </div>
+        );
+      }
     // Calculate total games for each move to find the percentages
     const calculatePercentages = (move) => {
         const totalGames = move.white + move.draws + move.black;
@@ -10,15 +26,12 @@ const evalComponent = ({ moves }) => {
     };
 
     return (
-        <div className="moves-table">
+        <div className="eval-container">
         <table>
             <thead>
             <tr>
                 <th>Move</th>
-                <th>White Wins</th>
-                <th>Draws</th>
-                <th>Black Wins</th>
-                <th>Visualization</th>
+                <th>Eval</th>
             </tr>
             </thead>
             <tbody>
@@ -27,9 +40,6 @@ const evalComponent = ({ moves }) => {
                 return (
                 <tr key={index}>
                     <td>{move.san}</td>
-                    <td>{move.white}</td>
-                    <td>{move.draws}</td>
-                    <td>{move.black}</td>
                     <td>
                     <div className="bar-container">
                         <div className="bar white" style={{ width: `${whitePercentage}%` }}></div>
