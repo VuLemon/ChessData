@@ -62,8 +62,33 @@
 }
 
 .eval-container {
-  display: flex;
-  justify-content: center;
+  overflow: auto;
+  border: 1px solid #dee2e6;
   align-items: center;
-  margin-left: 20px; /* Optionally, adjust the margin for the eval container as well */
+  justify-content: center;
+  height: 392px; /* Set a fixed height for the container */
 }
+
+.eval-container thead th {
+  position: sticky;
+  top: 0;
+  background-clip: padding-box;
+  z-index: 10;
+}
+
+.eval-bar {
+  height: 30px;
+  width: 0;
+  background-color: white;
+  text-align: center;
+  line-height: 30px;
+  color: white;
+  font-weight: bold;
+  display: inline-block;
+  position: relative;
+  top: 0;
+  left: 0;
+}
+
+
+

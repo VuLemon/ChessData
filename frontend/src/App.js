@@ -3,6 +3,8 @@ import './App.css';
 import axios from 'axios'
 import ChessboardComponent from './components/chessboardComponent';
 import EvalComponent from './components/evalComponent';
+import 'bootstrap/dist/css/bootstrap.css';
+
 
 function App() {
   const [game, setGame] = useState(null)
@@ -10,7 +12,7 @@ function App() {
 
   const queryForFen = async (fen, setOpeningName) => {
     try {
-      var gameState = await axios.get(`http://localhost:4000/openings?fen=${fen}&moves=12`)
+      var gameState = await axios.get(`http://localhost:4000/openings?fen=${fen}`)
       console.log("Game State: " + JSON.stringify(gameState))
       if (gameState.data.opening){
         const openingName = gameState.data.opening.name
@@ -18,7 +20,6 @@ function App() {
       }
       setGame(gameState)
       setMoveMade(true)
-      console.log("Opening is " + JSON.stringify(game.data.moves))
     } catch (error) {
       console.log("Error from the frontend: " + error)
     }
@@ -27,7 +28,8 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Chess Game</h1>
+        <h1>Vu's Chess Opening Explorer</h1>
+        <p>Simply play a move, and the engine will tell you what the next lines are, and how likely you are to win</p>
         <div className="container">
           <ChessboardComponent queryForFen={queryForFen}/>
           <EvalComponent moves={game ? game.data.moves : []} moveMade={moveMade} /></div>

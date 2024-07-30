@@ -12,7 +12,7 @@ routers.get("/openings", async (req, res) => {
         console.log("Issue with transmitting FEN data from frontend")
     }
     else try {
-        const opening = await axios.get(`https://explorer.lichess.ovh/masters?fen=${fen}`)
+        const opening = await axios.get(`https://explorer.lichess.ovh/masters?fen=${fen}&moves=7`)
         console.log("Opening name: " + JSON.stringify(opening.data.opening) + "\n")
         console.log("Available moves: " + JSON.stringify(opening.data.moves))
         res.json({

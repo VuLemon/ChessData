@@ -5,6 +5,7 @@ const ChessboardComponent = ({queryForFen}) => {
     const gameRef = useRef(null);
     const boardRef = useRef(null);
     const [opening, setOpeningName] = useState('Starting Position')
+    const [currentTurn, setCurrentTurn] = useState('White');
 
   useEffect(() => {
     // Ensure Chessboard and Chess are loaded globally
@@ -81,6 +82,7 @@ const ChessboardComponent = ({queryForFen}) => {
 
     if (move === null) return 'snapback';
     revertHighlighted();
+    setCurrentTurn(game.turn() === 'w' ? 'White' : 'Black');
     queryForFen(game.fen(), setOpeningName)
   };
   const onSnapEnd = () => {
@@ -95,6 +97,7 @@ const ChessboardComponent = ({queryForFen}) => {
     <div className="chessboard-container">
       <div id="myBoard" style={{ width: '400px' }}></div>
       {opening && <div>Opening: {opening}</div>}
+      <div>Current Turn: {currentTurn}</div> {/* Display current turn */}
     </div>
   );
 };
