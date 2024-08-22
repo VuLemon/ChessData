@@ -7,12 +7,13 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 
 function App() {
+  const {REACT_APP_INSTANCE_URL} = process.env
   const [game, setGame] = useState(null)
   const [moveMade, setMoveMade] = useState(false);
 
   const queryForFen = async (fen, setOpeningName) => {
     try {
-      var gameState = await axios.get(`http://localhost:4000/openings?fen=${fen}`)
+      var gameState = await axios.get(`http://${REACT_APP_INSTANCE_URL}:4000/openings?fen=${fen}`)
       console.log("Game State: " + JSON.stringify(gameState))
       if (gameState.data.opening){
         const openingName = gameState.data.opening.name
