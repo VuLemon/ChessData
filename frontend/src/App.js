@@ -12,7 +12,7 @@ function App() {
 
   const queryForFen = async (fen, setOpeningName) => {
     try {
-      var gameState = await axios.get(`http://localhost:4000/openings?fen=${fen}`)
+      var gameState = await axios.get(`/api/openings?fen=${fen}`)
       console.log("Game State: " + JSON.stringify(gameState))
       if (gameState.data.opening){
         const openingName = gameState.data.opening.name
